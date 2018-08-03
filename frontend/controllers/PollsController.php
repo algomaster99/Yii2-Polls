@@ -5,13 +5,15 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use common\models\QuestionForm;
+use common\models\ChoiceForm;
 
 class PollsController extends Controller
 {
     public function actionIndex()
     {
         $questions = QuestionForm::find()->all();
-        return $this->render('index', ['questions'=>$questions]);
+        $choices = ChoiceForm::find()->all(); 
+        return $this->render('index', ['questions'=>$questions, 'choices'=>$choices]);
     }
 
     public function actionAsk()
@@ -23,6 +25,17 @@ class PollsController extends Controller
             return $this->actionIndex();
         }
         return $this->render('questionForm',['model'=>$model]);
+    }
+
+    public function actionChoice()
+    {
+        $model = new ChoiceForm();
+        if ($model->load(Yii::$app->request->post()))
+        {
+            $model->save();
+            return $this->actionIndex();
+        }
+        return $this->render('choiceForm', ['model'=>$model]);
     }
 }
 
