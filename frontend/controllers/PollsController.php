@@ -10,7 +10,8 @@ class PollsController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $questions = QuestionForm::find()->all();
+        return $this->render('index', ['questions'=>$questions]);
     }
 
     public function actionAsk()
@@ -19,7 +20,7 @@ class PollsController extends Controller
         if ($model->load(Yii::$app->request->post()))
         {
             $model->save();
-            return $this->render('index');
+            return $this->actionIndex();
         }
         return $this->render('questionForm',['model'=>$model]);
     }
