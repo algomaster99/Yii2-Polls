@@ -13,5 +13,5 @@ use common\models\QuestionForm
         ['prompt'=>'Select Question']
     ) ?>
     <?= $form->field($model, 'choice_text'); ?>
-    <?= Html::submitButton('Ask!', ['class' => 'btn btn-primary']) ?>
+    <?= Html::submitButton('Add Answer!', ['class' => 'btn btn-primary']) ?>
 <?php ActiveForm::end(); ?>
