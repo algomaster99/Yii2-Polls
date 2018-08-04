@@ -37,6 +37,18 @@ class PollsController extends Controller
         }
         return $this->render('choiceForm', ['model'=>$model]);
     }
+
+    public function actionQuestionDetailView($id)
+    {
+        $question = QuestionForm::findOne($id);
+        $choices = ChoiceForm::find()->where(['question_id'=>$id])->all();
+        $model = new ChoiceForm();
+        return $this->render('detailView', [
+            'model'=>$model,
+            'question'=>$question,
+            'choices'=>$choices,
+        ]);
+    }
 }
 
 ?>
