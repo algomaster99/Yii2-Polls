@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 ?>
@@ -13,6 +14,7 @@ use yii\helpers\ArrayHelper;
         $list = $list + [$choice->id=>$choice->choice_text];            
     }
     echo $form->field($model, 'choice_text')->radioList($list)->label(false);
+    echo Html::submitButton('Vote!', ['class' => 'btn btn-success']);
 ?>
 
 <?php ActiveForm::end(); ?>
