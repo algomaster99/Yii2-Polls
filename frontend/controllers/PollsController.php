@@ -40,9 +40,19 @@ class PollsController extends Controller
 
     public function actionQuestionDetailView($id)
     {
+        $model = new ChoiceForm();
+        if ($model->load(Yii::$app->request->post()))
+        {
+            $option_arr = Yii::$app->request->post('ChoiceForm');
+            $option = $option_arr['choice_text']; 
+            // Yii::$app->session->setFlash('worked', $option);
+            $choice = ChoiceForm::findOne(['id'=>$option]);
+            $choice->votes = $choice->votes + 1;
+            $choice->save();
+        }
         $question = QuestionForm::findOne($id);
         $choices = ChoiceForm::find()->where(['question_id'=>$id])->all();
-        $model = new ChoiceForm();
+
         return $this->render('detailView', [
             'model'=>$model,
             'question'=>$question,
