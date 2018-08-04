@@ -19,6 +19,13 @@ class ChoiceForm extends ActiveRecord
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'question_id' => 'Question',
+        ];
+    }
+
 }
 
 ?>
