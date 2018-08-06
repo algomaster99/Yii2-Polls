@@ -15,6 +15,13 @@ use yii\helpers\ArrayHelper;
     }
     echo $form->field($model, 'choice_text')->radioList($list)->label(false);
     echo Html::submitButton('Vote!', ['class' => 'btn btn-success']);
+    echo '<h4>Results</h4>';
+    echo '<ul>';
+    foreach($choices as $choice)
+    {
+        echo '<li>'.$choice->choice_text.' - '.$choice->votes;            
+    }
+    echo '</ul>';
 ?>
 
 <?php ActiveForm::end(); ?>
