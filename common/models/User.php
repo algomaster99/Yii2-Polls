@@ -17,7 +17,7 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $auth_key
  * @property integer $status
- * @property integer $role
+ * @property integer $role // added manually to define role of users
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
